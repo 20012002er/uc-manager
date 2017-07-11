@@ -1,0 +1,27 @@
+ext {
+    commonsIoVersion = "2.5"
+    jodaTimeVersion = "2.9.4"
+    jodaMoneyVersion = '0.10.0'
+    jacksonVersion = "2.8.1"
+    commonsCollections = "3.2.1"
+    commonsLang = "2.6"
+    jbcryptVersion = "0.4"
+    springBootStarterVersion = "1.4.0.RELEASE"
+}
+
+dependencies {
+
+    compile "org.springframework.boot:spring-boot-starter-data-jpa:$springBootStarterVersion"
+
+    compile "commons-collections:commons-collections:$commonsCollections"
+    compile "commons-lang:commons-lang:$commonsLang"
+    compile "commons-io:commons-io:$commonsIoVersion"
+    compile "joda-time:joda-time:$jodaTimeVersion"
+    compile "org.joda:joda-money:$jodaMoneyVersion"
+    compile "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion"
+
+    compile "com.google.code.gson:gson"
+    compile "org.mindrot:jbcrypt:$jbcryptVersion"
+}
+
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'

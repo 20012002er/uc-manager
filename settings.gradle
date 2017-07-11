@@ -1,0 +1,4 @@
+rootProject.name = 'uc-manager'
+include 'app'
+include 'core'
+

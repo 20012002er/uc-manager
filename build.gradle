@@ -1,0 +1,43 @@
+allprojects {
+    group = 'com.jia16.uc-manager'
+    version = '1.0.0'
+}
+
+subprojects {
+
+    apply plugin: 'java'
+    apply plugin: 'maven'
+    apply plugin: 'spring-boot'
+
+    repositories {
+        jcenter()
+        mavenCentral()
+        mavenLocal()
+        maven { url "http://repo.spring.io/snapshot" }
+        maven { url "http://repo.spring.io/milestone" }
+    }
+
+    uploadArchives {
+        repositories {
+            mavenDeployer {
+                repository(url: mavenLocal().getUrl())
+            }
+        }
+    }
+
+}
+
+buildscript {
+
+    repositories {
+        jcenter()
+        mavenCentral()
+        maven { url "http://repo.spring.io/snapshot" }
+        maven { url "http://repo.spring.io/milestone" }
+    }
+
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.0.RELEASE")
+    }
+
+}

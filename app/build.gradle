@@ -1,0 +1,68 @@
+ext {
+    mysqlCommectorVersion = "5.1.39"
+    springBootStarterVersion = "1.4.0.RELEASE"
+    commonsIoVersion = "2.5"
+    jodaTimeVersion = "2.9.4"
+    jodaMoneyVersion = '0.10.0'
+    jacksonVersion = "2.8.1"
+    onsClientVersion = "1.2.4"
+    commonsCollections = "3.2.1"
+    commonsLang = "2.6"
+    commonsHttpclient = "3.1"
+    springVersion = "4.0.6.RELEASE"
+    druidVersion = "1.1.0"
+    dubboVersion = "2.5.3"
+    zkclientVersion = "0.3"
+    zookeeperVersion = "3.4.8"
+    jbcryptVersion = "0.4"
+    shiroVersion = "1.4.0"
+}
+
+dependencies {
+    compile "org.springframework.boot:spring-boot-starter-web:$springBootStarterVersion"
+    compile "org.springframework.boot:spring-boot-starter-redis:$springBootStarterVersion"
+    compile "org.springframework.boot:spring-boot-starter-data-jpa:$springBootStarterVersion"
+    compile "org.springframework.boot:spring-boot-starter-aop:$springBootStarterVersion"
+    compile "org.springframework.boot:spring-boot-starter-freemarker:$springBootStarterVersion"
+    compile "com.alibaba:druid-spring-boot-starter:$druidVersion"
+    compile "org.apache.shiro:shiro-spring:$shiroVersion"
+
+    compile "mysql:mysql-connector-java:$mysqlCommectorVersion"
+
+    compile "commons-collections:commons-collections:$commonsCollections"
+    compile "commons-lang:commons-lang:$commonsLang"
+    compile "commons-io:commons-io:$commonsIoVersion"
+    compile "joda-time:joda-time:$jodaTimeVersion"
+    compile "org.joda:joda-money:$jodaMoneyVersion"
+    compile "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion"
+    compile 'com.jayway.jsonpath:json-path-assert:2.2.0'
+    compile "com.aliyun.openservices:ons-client:$onsClientVersion"
+    compile "commons-httpclient:commons-httpclient:$commonsHttpclient"
+    compile "commons-codec:commons-codec:1.9"
+
+    compile ("com.alibaba:dubbo:$dubboVersion") {
+        exclude(module: "spring")
+    }
+    compile ("org.apache.zookeeper:zookeeper:$zookeeperVersion") {
+        exclude(module: "log4j")
+    }
+    compile ("com.101tec:zkclient:$zkclientVersion") {
+        exclude(module: "log4j")
+    }
+
+    compile "org.springframework:spring-context-support:$springVersion"
+    compile "org.springframework:spring-tx:$springVersion"
+
+    compile "com.google.code.gson:gson"
+    compile "org.mindrot:jbcrypt:$jbcryptVersion"
+
+    testCompile "org.springframework.boot:spring-boot-starter-test"
+
+    compile project(':core')
+}
+
+configurations.all {
+    exclude group: 'org.slf4j', module: 'slf4j-log4j12'
+}
+
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
